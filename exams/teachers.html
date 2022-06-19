@@ -1,0 +1,101 @@
+
+
+<div class="container ">
+<div class="row">
+
+<?php
+$qq="select * from teachers where level=1  ";
+$f=mysqli_query($conn,$qq);
+$zz=1;
+?>
+
+
+<?php
+while($t=mysqli_fetch_array($f)){
+ $tfn=$t['userfname'];
+ $xtid=$t['userid'];
+ $ts=$t['tsub'];
+ $tavatar=$t['avatar'];
+ $level=$t['level'];
+
+?>
+<!-------------------------------------------------------------------------------------->
+
+
+
+<div class="col-12 col-xs-6" style="margin-bottom:5px ">
+	<div class="card" style="height:300px;background:lightgray;position: relative; ">
+		<div style="padding:5px;height:25%;background:blue;width:100%  ">
+		      <a href="../userprofile/?uid=<?php echo $xtid;?>"	 > <img src="../img/<?php echo $tavatar; ?>"     
+			style="position:absolute;width:50%;height:50% ;border-radius:50%;margin-left:25%; "/>	</a>
+		</div>
+
+<div style="height:27%"></div>
+
+
+		<div style="height:15%;background:white;border-radius:30px  ;overflow:hidden;line-height:15px;padding:2px;
+		margin-bottom:1px    ">
+			<center><strong> <?php echo $tfn ;?></strong></center>
+		</div>
+
+
+		<div style="height:15%;background:white;border-radius:30px;overflow:hidden ;line-height:15px;margin-bottom:1px   ">
+			<center id="us"><?php echo $ts?> </center>
+		</div>
+
+		
+              <div class="container">
+		<div class="row" style="height:18%;background:white;border-radius:30px;">
+<div  style=" "class="col-6">
+<a  href=""     class="btn  btn-danger" style="width:100%" >
+	<i class="fa fa-x"style="color:gray"></i> العاب  </a><br>
+</div>
+<div style="float:right" class="col-6">
+<a  href="exam.php?tid=<?php echo $xtid; ?>" class="btn  btn-danger" style="width:100% ">
+	<i class="fa fa-x"style="color:gray"></i> امتحانات  </a><br>
+</div>
+
+
+		</div>
+           </div>
+
+
+	</div>
+</div>
+
+
+
+
+<!---------------------------------------------------------------------------------------->
+<hr>
+<?php $zz++;
+} ?>
+
+
+</div>
+</div>
+
+<script type="text/javascript">
+	n="<?php echo $tfn ; ?>";
+	s="<?php echo $ts ; ?>";
+    a="<?php echo $ta ; ?>";
+    ug="<?php echo $ug ; ?>";
+    level="<?php echo $tlevel ; ?>";
+
+if(a==''){a="Welcome  ";}
+if(s==''){s=" write your subject  ";}
+if(n==''){n="<?php echo $tfn ; ?>";}
+
+    $("#un").html(n);
+    $("#ua").html(a);
+
+
+
+    $("#us").html(s);
+
+</script>  
+
+
+
+
+

@@ -1,0 +1,147 @@
+
+
+
+
+
+
+<?php
+     $uid= isset($_GET['uid']) && is_numeric($_GET['uid'])? intval($_GET['uid']) :0 ;
+
+$qq="select * from teachers where userid='$uid'  ";
+$f=mysqli_query($conn,$qq);
+
+
+
+
+$t=mysqli_fetch_array($f);
+ $tfn=$t['userfname'];
+ $xtid=$t['userid'];
+ $ts=$t['tsub'];
+ $ta=$t['about'];
+$tavatar=$t['avatar'];
+ $tlevel=$t['level'];
+ $tgrade=$t['grade'];
+
+$qxq="select * from grades where gradeid='$tgrade'  ";
+$fd=mysqli_query($conn,$qxq);
+$uf=mysqli_fetch_array($fd);
+$ug=$uf['gradename'];
+
+
+
+@$un=$_POST['un'];
+ @$us=$_POST['us'];
+ @$ua=$_POST['ua'];
+
+
+
+
+?>
+
+
+<center><div id="return"></div></center>
+<form method="post" action=" <?php echo $_SERVER['PHP_SELF'];?>"  id="insert_data"  enctype="multipart/form-data">
+
+<div class="container_fluid " id="pa">
+<div class="row">
+
+<!-------------------------------------------------------------------------------------->
+
+
+<div class="col-12 col-xs-6" style="margin-bottom:5px ">
+	<div class="card" style="height:700px;background:lightgray;position: relative; ">
+
+
+
+		<div style="padding:5px;height:25%;background:blue;width:100% ;  ">
+
+				<img src="../img/<?php echo $tavatar;?>" id="pimg" 
+			style="position:absolute;width:50%;height:50% ;border-radius:50%;margin-left:25%  "/>
+
+		</div>
+		
+           
+
+<!---
+<input type="file" name="imgup" id="img" >
+----->
+
+<div style="height:30%"></div>
+
+
+		<div style="height:15%;background:lightblue;border-radius:30px;overflow:hidden ;line-height:15px;margin-bottom:1px   ">
+
+		<textarea name="un" id="un" type="text" placeholder=" "   disabled 
+		style="width:100%;height:48%;text-align:center;word-wrap:break-word;color:blue;font-weight:bold;     ">    </textarea>    
+
+
+
+		<textarea name="us" id="us" type="text"  placeholder="  "  disabled 
+		style="width:100%;height:48%;text-align:center;word-wrap:break-word;color:green;    "> </textarea>    
+
+		</div>
+
+		<div style="height:25%;background:white;border-radius:30px;overflow:hidden ;line-height:15px;margin-bottom:1px   ">
+
+		<textarea name="ua" id="ua" type="text"  placeholder=" "       disabled 
+		style="width:100%;height:100%;text-align:center;word-wrap:break-word;    ">  </textarea>    
+
+		</div>
+
+		<br>
+              <div class="container">
+		<div class="row" style="height:18%;background:white;border-radius:30px;">
+<div  style=" "class="col-12">
+<div class="btn btn-block  btn-info" style="width:100%" ></div>
+
+</div>
+
+
+
+		</div>
+           </div>
+
+
+	</div>
+</div>
+
+
+
+
+<!---------------------------------------------------------------------------------------->
+
+
+</div>
+</div>
+
+</form>
+
+
+
+
+
+<script type="text/javascript">
+	n="<?php echo $tfn ; ?>";
+    s="<?php echo $ts ; ?>";
+    a="<?php echo $ta ; ?>";
+    ug="<?php echo $ug ; ?>";
+    level="<?php echo $tlevel ; ?>";
+if(a==''){a="Welcome  ";}
+if(s==''){s=" write your subject  ";}
+if(n==''){n="<?php echo $tfn ; ?>";}
+
+    $("#un").html(n);
+    $("#ua").html(a);
+
+
+if(level==1){
+    $("#us").html(s);
+}else{
+	    $("#us").html(ug);
+
+}
+
+
+</script>
+
+

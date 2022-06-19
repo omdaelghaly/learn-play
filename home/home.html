@@ -1,0 +1,266 @@
+
+
+
+
+<?php 
+@session_start();
+
+$userid=$_SESSION['id'];
+$usew="select * from teachers where userid= '$userid' ";
+$bv= mysqli_query($conn,$usew);
+while($myn=mysqli_fetch_array($bv)){
+  $mynam=$myn['userfname'];
+  $myavtar=$myn['avatar'];
+}
+?>
+
+
+
+    <link rel="stylesheet" type="text/css" href="xcss.css"   >
+
+
+
+<div id="notify" hidden style="position:absolute;  ">
+</div>
+<div class="container_fluid" >
+  <div class="row">
+        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+<!--------------------------------------------------------------------->
+
+
+<!------------------------------------------------------------------------------------------------>
+
+<!---------------------------------------------------------------------------------------------->
+
+<div class="catt"  >
+<!---------------------------------------------------------------------------------------------->
+
+ <script src="jquery-3.5.1.js"></script>
+
+
+                           <script>
+                setInterval(function(){
+                 $(".cbody").load("talkbody.php");
+
+       },1000);         
+                  </script>
+
+     <div  class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="overflow-y:scroll ;overflow-x: hidden;"id="myDi" >
+             
+
+<div class="cbody"  >
+
+                     
+
+<?php include 'talkbody.php'; ?>
+</div>
+
+</div>
+<!---------------------------------------------------------------------------------------------->
+
+
+
+<div class="csend" >
+
+
+
+
+<div class="container_fluid">
+  <div class="raw">
+
+<div id="notify"></div>
+<form action="inserttalk.php" method="post" id="formtalk" enctype="multipart/form-data">
+
+             <div style="display: inline-flex;width:100%;border:2px solid black;border-radius:30px
+             ;background:white;height:55px    " >
+  <input type="text" name="uzr" value="<?php echo $mynam;   ?>" hidden >
+  <input type="text" name="uzrid" value="<?php echo $userid;   ?>" hidden>
+  <input type="text" name="uzrav" value="<?php echo $myavtar;   ?>" hidden >
+
+<div  style="background:;width:8% ">
+            <input type="file" name="photo[]" id="file_upload_id" multiple accept="image/*" hidden >
+            <a href="javascript:void(0)" style="border-radius:30px;padding: 10px">
+              <i id="icon_upload"  class="fas fa-image" onclick="_upload()"
+              style="font-size:150%;border-radius:20px;color:green;border:none;padding:5px"></i></a>
+
+</div>
+<div  style="background:;width:70% ; ">
+<textarea name="talkpost" id="pos" class="form-control" style="border:none;direction:rtl;height:50px ">  </textarea>
+</div>
+<div  style="background:;width:10% ">
+   <img src="../img/<?php echo $myavtar;?>" style="margin-right:5px;border-radius:20px;height:100%;width:100%     ">
+</div>
+<div  style="background:;width:10% ">
+                    <input type="submit" name="submit" id="bvbv" value="&#xf1d8"   class="fas fa-paper-plane"
+                    style="font-size:250%;border-radius:20px;color:green;border:none;padding:3px    ">
+
+</div>
+
+
+            </div>
+
+</form>
+
+
+  </div>
+</div>
+
+
+</div>
+
+
+<script>
+
+      $( "form" ).each( function () {
+
+        /* each form add onsubmit event */
+        $( this ).bind( "submit", function (event) {
+
+          event.preventDefault(); // return false
+
+
+          var formHTML = event.target; // $( this ) => not work !!
+
+          console.log( formHTML ); // formHTML element
+
+
+          // https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+          var formData = new FormData( formHTML );
+
+          console.log( formData );
+
+
+          // https://api.jquery.com/jquery.ajax/
+          // https://www.w3schools.com/jquery/ajax_ajax.asp
+          // https://www.w3schools.com/jquery/jquery_ref_ajax.asp
+
+          /* AJAX request */
+          ajax( formHTML, formData, "#notify" ); // ajax( form, data, destination )
+                            $('form').trigger("reset");
+
+        } );
+
+      });
+
+    </script>
+
+    <script>
+
+      function ajax( form, data, destination )
+      {
+
+        $.ajax({
+
+          method: form.method,
+          url: form.action,
+
+          data: data,
+
+          /*
+            result type data
+            JSON.parse(data)
+            http://api.jquery.com/jQuery.ajax/
+            https://stackoverflow.com/questions/14322984/differences-between-contenttype-and-datatype-in-jquery-ajax-function
+            https://forums.asp.net/t/2087039.aspx?what+is+difference+between+dataType+and+contentType+in+jquery
+          */
+          dataType: "HTML",
+
+          /* formData */
+          contentType: false, // formData with $_POST or $_FILES in server (PHP)
+          processData: false
+
+        })
+
+        /* handle success */
+        .done( function(result) {
+
+          $( destination ).html( result );
+
+          console.log(result);
+
+        } )
+
+        /* handle error */
+        .fail( function(error) {
+
+          alert("Cannot Set Data!");
+
+          console.error(error);
+
+        } );
+
+      }
+
+    </script>
+
+
+ <script type="text/javascript">
+   $("#bvbv").click(function(){
+setTimeout(function(){
+               var myDiv = document.getElementById("myDi");
+               myDiv.scrollTop = myDiv.scrollHeight;
+         
+},1000)
+   });
+
+
+$(document).ready(function(){
+
+setTimeout(function(){
+               var myDiv = document.getElementById("myDi");
+               myDiv.scrollTop = myDiv.scrollHeight;
+         
+},1000)
+
+});
+
+ </script>
+
+<script>
+function _upload(){
+    document.getElementById('file_upload_id').click();
+}
+</script>
+
+
+  <script>
+        $(document).ready(function() {
+            $('#del').click(function() {
+                
+                    $.ajax({
+                        url: "deltalk.php",
+                        method: "POST",
+                        data: $('#formtalk').serialize(),
+                        success: function(data) {
+                            $('form').trigger("reset");
+                            $('#notify').fadeIn().html(data);
+                            setTimeout(function() {
+                                $('#notify').fadeOut("slow");
+                            }, 6000);
+                        }
+                    });
+               
+            });
+        });
+    </script> 
+
+
+<!---------------------------------------------------------------------------------------------->
+
+</div>
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------------->
+  </div>
+  </div>
+</div>
+<!--------------------------------------------------------------------->
+
+   

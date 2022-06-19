@@ -1,0 +1,187 @@
+
+<audio id="startbg"></audio>
+<audio id="start1bg"></audio>
+<audio id="questbg"></audio>
+<audio id="anbg1"></audio>
+<audio id="anbg2"></audio>
+<audio id="anbg3"></audio>
+<audio id="anbg4"></audio>
+<audio id="qbg"></audio>
+<audio id="wfa"></audio>
+<audio id="coan"></audio>
+<audio id="wran"></audio>
+<audio id="thinkk"></audio>
+<audio id="thinkkk"></audio>
+<audio id="ends"></audio>
+
+
+<script type="text/javascript">
+	//start
+function startg(){
+	$("#startbg").attr("src","../sound/intro.mp3");
+	$("#startbg").trigger('play');
+	stv=setTimeout(function(){
+	$("#start1bg").attr("src","../sound/wait.mp3");
+	$("#start1bg").attr("loop",true);
+
+	$("#start1bg").trigger('play');
+	},30000);
+
+}
+
+function startgstop(){
+	$("#startbg").trigger('pause');
+	$("#start1bg").trigger('pause');
+      clearTimeout(stv);
+}
+
+//nextquestion
+
+
+function nextq(){
+	$("#qbg").attr("src","../sound/nextq.mp3");
+	$("#qbg").trigger('play');
+
+}
+
+//question
+function qsbg(){
+
+	$("#questbg").attr("src","../sound/newq.mp3");
+
+	$("#anbg1").attr("src","../sound/an3.mp3");
+	$("#anbg2").attr("src","../sound/an3.mp3");
+	$("#anbg3").attr("src","../sound/an3.mp3");
+	$("#anbg4").attr("src","../sound/an3.mp3");
+	$("#thinkk").attr("src","../sound/think.mp3");
+	$("#thinkkk").attr("src","../sound/think2.mp3");
+		$("#questbg").trigger('play');
+	setTimeout(function(){
+				$("#anbg1").trigger('play')
+	  },2000);	
+	setTimeout(function(){
+				$("#anbg2").trigger('play')
+	  },3000);	
+	setTimeout(function(){
+				$("#anbg3").trigger('play')
+	  },5000);	
+	setTimeout(function(){
+				$("#anbg4").trigger('play')
+	  },6000);	
+
+
+
+	setTimeout(function(){
+	 $("#thinkk").trigger('play');
+  	},8000);
+  thnkset=setTimeout(function(){
+  		$("#thinkkk").attr("loop",true);
+  		$("#thinkkk").trigger('play');
+
+  	},42000);
+
+
+}
+
+//afterconfirm
+function waitforan(){
+	$("#wfa").attr("src","../sound/waitan.mp3");
+	$("#wfa").trigger('play');
+}
+//correct
+function correctan(){
+	$("#coan").attr("src","../sound/correctan.mp3");
+	$("#coan").trigger('play');
+}
+//wrong
+function wrongan(){
+	$("#wran").attr("src","../sound/wran.mp3");
+	$("#wran").trigger('play');
+}
+
+
+
+//stopthink
+function thinkstop(){
+  		$("#thinkkk").trigger('pause');
+       	$("#thinkk").trigger('pause');
+       	clearTimeout(thnkset);
+}
+
+
+
+
+
+//endortimeout
+function exit(){
+             thinkstop();
+
+   clearInterval(repco);
+    clearTimeout(repcoo);
+     clearTimeout(repcooo);
+    $("#"+co+co).css({"background":"white","color":"black"});
+    $("#"+sel+sel).css({"background":"white","color":"black"});
+	$("input:radio[name=1]:checked").prop("checked", false);
+
+         clearInterval(timer);
+       $("#timer").html(50);
+ 	   $("#inf").hide(2000);
+      $("#btndir").hide();
+ 	   $("#allq").fadeOut(2000);
+  	   $("#a1").fadeOut(2000);
+  	   $("#b2").fadeOut(2000);
+  	   $("#c3").fadeOut(2000);
+  	   $("#d4").fadeOut(2000);
+ 	  $("#btnans").fadeOut(1500);
+
+
+  $("#ends").attr("src","../sound/end.mp3");
+	$("#ends").trigger('play');
+
+         setTimeout(function(){
+      $("#omda").fadeIn(5000);
+               },5000);
+        setTimeout(function(){
+      $("#omda").fadeOut(3000);
+  	   $("#userinfo").hide(5000);
+	   $("#time").hide(5000);
+  	   $("#aids").hide(5000);
+
+               },20000);
+         setTimeout(function(){
+window.location.reload();
+               },32000);
+
+         }
+
+function endg(){
+	   $("#btnans").hide();
+      $("#btndir").hide();
+      $("#omda").hide();
+	   $("#startgbtn").hide();
+	   $("#startqbtn2").hide();
+   	   $("#userinfo").hide();
+	   $("#time").hide();
+  	   $("#aids").hide();
+  	   $("#allq").hide();
+  	   $("#a1").hide();
+  	   $("#b2").hide();
+  	   $("#c3").hide();
+  	   $("#d4").hide();
+  	        thinkstop();
+    $("#ends").attr("src","../sound/end.mp3");
+	$("#ends").trigger('play');
+
+  	   $("#gameend").html("Game over");
+       $("#gameend").show(1000);
+  	 
+
+setTimeout(function(){
+	       $("#gameend").hide(1000);
+ 	   	   $("#startgbtn").fadeIn(3000);
+
+  	 },30000);
+}
+
+</script>
+

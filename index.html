@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<?php
+
+
+header("location:login/");
+
+
+?>
+
+</head>
+<body>
+
+<audio id="confirm"  src="sound/a.mp4"></audio>
+
+<button id="btncnf" class="btn btn-info">mm</button>
+
+<script type="text/javascript">
+
+	$("#btncnf").click(function(){
+
+			$("#confirm").attr("autoplay","autoplay");
+			$("#btncnf").attr("class","btn btn-danger");
+			$("#btncnf").text("ok");
+
+	});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+

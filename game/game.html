@@ -1,0 +1,696 @@
+
+<!--------------------------------------------------------->
+
+<div class="container_fluid" style=" ">
+ <div class="row">
+
+
+<!-------------------------------------------------------->
+
+
+   <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 " 
+   style="background:;">
+   
+
+<!------------------------------------------------------------------------->
+
+<div id="contall" >
+	<div id="contvideo" style="width:100% ;height:550px; position:relative;">
+		<video id="vid1" muted src="../sound/sv1.mp4" style="width:100% ;height: 100% ; position: absolute; "></video>
+
+             <!-------------------------------------click-btnstart----------------------------------->             
+
+		<div  style=" width:100%;position:absolute;text-align:center;margin-top:230px;  ">
+             
+                 <div id="startgbtn">
+               <strong><p style="color:green; ">Are you ready ?    </p></strong>
+			<button id="startv1" style=" margin-top:10px " class="btn btn-info" > start </button>
+			      </div>
+                                      <p id="omda" style="color:green; "> By <br>MR: Emad Salah   </p>
+
+		</div>
+
+
+             <!-------------------------------------ensdclick-btnstart----------------------------------->             
+             <!-------------------------------------show body----------------------------------->  
+
+<div id="gbody" style=" width:100%;position:absolute;">
+
+	<!---------------------------------------infoheader---------------------------------------->
+
+	<div id="userinfo" style="height:;  ">
+   
+
+
+ 	</div>
+	<script type="text/javascript">
+		 setInterval(function(){
+		$("#userinfo").load('userinfo.php')
+	    },2000);
+	</script>
+<!---------------------------------------time---------------------------------------->
+	                   <div id="time" style="height:;background:;display:inline-flex; ">
+
+                	<div style="background:white;color:black;width:80px;height:40px;border-radius:30px;text-align: center;
+                	margin-top:5px   "><strong id="timer">120</strong></div>
+           		
+           		
+           	<div></div>
+           	
+                          </div>
+<!---------------------------------------aids---------------------------------------->
+
+
+	           <div id="aids" style="display:inline-flex;float:right;position: relative; ">
+
+           	<div  style="background:white;color:black;width:80px;height:40px;border-radius:30px;text-align: center;
+                	margin-top:5px;">add1</div>
+
+           	<div style="background:white;color:black;width:80px;height:40px;border-radius:30px;text-align: center;
+                	margin-top:5px;margin-left:5px;  ">
+                  <button style="background:white;color:black;width:80px;height:40px;border-radius:30px;text-align: center;" id="btntop">top10</button></div>
+
+                  <div id=divtop  style="float:right;width:220px;height:400px;overflow:scroll;background:blue 
+                                      ;position:absolute;margin-top:50px;border-radius:30px;color:white;overflow-x:hidden;
+                                      padding:5px;margin-right:0px;z-index:88         ">
+                                      <table style='direction:rtl;text-align:right;width:100%;color:white'>
+      <tr style='border-bottom:4px solid orange ' ><td>s</td><td>NAME</td><td>sc.</td><td>le. </td></tr>
+                                <?php
+                                      $tri="select * from game order by level desc, score desc ";
+                                      $trin=mysqli_query($conn,$tri);
+                                      $tp=1;
+                                      while($top=mysqli_fetch_array($trin)){
+                                        $tpn=$top['name'];
+                                        $tpsc=$top['score'];
+                                        $tpl=$top['level'];
+
+      echo"<tr style='border-bottom:2px solid white ' ><td>". $tp ."</td><td>".$tpn ."</td><td>".$tpsc."</td><td>".$tpl. " </td></tr>";
+                                        $tp++;
+                                    }
+
+                                ?>
+                              </table>
+
+                  </div>
+           	                <script type="text/javascript">
+                                                              $("#divtop").hide();
+
+                              $("#btntop").click(function(){
+                                $("#divtop").toggle();
+                              });
+                            </script>
+           </div>
+<!----------------------------btn start q--------------------------------------------------->
+
+       		<div id="startqbtn2" style=" width:100%;position:absolute;text-align:center;margin-top:90px  ">
+
+                   <div id="startqbtn">
+               <p style="color:red; "><strong>  Are you ready for the next question ?  </strong>    </p>
+			<button id="startq1" style=" margin-top:10px " class="btn btn-success" > Yes </button>
+			      </div>
+
+			  </div>    
+<!--------------------------------------q----------------------------------------->
+<div id="btndir">
+	<center>
+<button id="l">L<=</button>
+<button id="r">R=></button>
+</center>
+</div>
+
+<div id="dir"  style="; ">
+
+  <div id="allq" style="margin-top:30px;display: inline-flex;margin-left:5px;margin-right: 5px   ">
+  	<!------>
+  	 <div id="numberq" style="background:   ">
+  	 	<span id="numqq"style="width:50px;height:50px;border-radius:30px 50px;background:orange;padding:5px;color:white "> 0 </span>
+  	 </div>
+
+  	 <div id="q1" style="margin-left:5px;margin-right:5px;background:lightgray;padding:5px;
+  	 border-radius:30px 30px 30px 30px    ">
+  	 	<strong ><p id="q" style="margin-left:5px;margin-right:5px;min-width:300px">qqqqqqq     </p></strong>
+
+  	 </div>
+          
+
+
+  	<!-------allq---->
+  </div>
+
+<br><br>
+
+
+
+<?php  $cou=1;
+
+
+
+;?>
+
+
+
+
+
+
+
+      <div id="allan" style="margin-right:50px;margin-left:50px; ">
+<center>
+
+          	<div id="a1" style="margin-bottom:10px ;display: inline-flex;">
+
+          	<span style="padding:5px;background:orange;height:30px;width:30px;border-radius:10px 0 10px 0 ;color: white ">
+          	a
+            </span>-<input type="radio" id="a" name="<?php echo $cou;?>" value="a">
+          	 <div id="aa" style="background:white;border-radius:30px;padding:5px;min-width:200px  ">
+          	  answeerrrrrrrrr</div>	
+
+          	</div>
+          	
+
+
+          	<div id="b2" style="margin-bottom:10px ;display: inline-flex;">
+
+          	<span style="padding:5px;background:orange;height: 30px;width:30px;border-radius:10px 0 10px 0 ;color: white ">
+          	b
+            </span>-<input type="radio" id="b" name="<?php echo $cou;?>" value="b">
+          	 <div id="bb" style="background:white;border-radius:30px;padding:5px;min-width:200px ">
+          	  answeerrrrrrrrr</div>	
+
+          	</div>
+
+          	
+
+          	<div id="c3" style="margin-bottom:10px ;display: inline-flex;">
+
+          	<span style="padding:5px;background:orange;height: 30px;width:30px;border-radius:10px 0 10px 0 ;color: white ">
+          	c
+            </span>-<input type="radio" id="c" name="<?php echo $cou;?>" value="c">
+          	 <div id="cc" style="background:white;border-radius:30px;padding:5px;min-width:200px ">
+          	  answeerrrrrrrrr</div>	
+
+          	</div>
+
+
+          	<div id="d4" style="margin-bottom:10px ;display: inline-flex;">
+
+          	<span style="padding:5px;background:orange;height: 30px;width:30px;border-radius:10px 0 10px 0 ;color: white ">
+          	d
+            </span>-<input type="radio" id="d" name="<?php echo $cou;?>" value="d">
+          	 <div id="dd" style="background:white;border-radius:30px;padding:5px;min-width:200px ">
+          	  answeerrrrrrrrr</div>	
+
+          	</div>
+<br>   
+                     <div id="noti"></div>
+                 <div ><strong id="gameend"></strong></div>
+          	<p id="inf" hidden style="background:white;border-radius:10px 0 10px 0  ">   </p>
+</center>          	
+         </div>
+
+
+<!---------dir-->
+</div>
+<br>
+
+<!-------------btnanswer--------------------------------------------------------------->
+<div id="btnans">
+<button  id="sure" class="btn btn-success" style="width:47%;float:right; ">تاكبد  </button>
+<button  id="next" class="btn btn-info" style="width:47%; "> التالى  </button>
+<br><br>
+
+<button  id="exit" class="btn btn-danger" style="width:100%; ">خروج  </button>
+
+</div>
+
+
+
+
+<!---gbody---------------------------------------------------------->
+</div>
+
+
+
+
+             <!-------------------------------------endbody----------------------------------->             
+
+
+
+
+	</div>
+
+
+</div>	
+
+
+
+
+
+<!------------------------------------------------------------------------->
+
+    </div>
+
+
+
+<!-------------------------------------------------------->
+
+</div>
+</div>
+
+
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+
+
+
+
+
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+
+
+<div id="correct" hidden></div>
+<div id="try" hidden></div>
+
+
+<div id="selectq" hidden>
+	<?php
+	include 'selectq.php';
+	?>
+
+</div>
+
+<div id="insertsc">
+	
+
+</div>
+
+<div id="insert">
+	
+
+</div>
+
+<div>  
+		<?php
+	include 'funsound.html';
+	?>
+	  </div>
+<!---------------------------------------------------->
+<!------------------------------------------------------><!---------------------------------------------------->
+<!------------------------------------------------------>
+<!---------------------------------------------------->
+<!------------------------------------------------------>
+<div hidden>
+  <!--------insert qid iinto qame-------->
+<div id="returnid">r</div>
+
+<form method="post" id="qidform" action="" >
+<input type="text" name="qidval" id="qidval" value="nnn" >
+<input type="text" name="gamer" id="idgamer" value="<?php echo $tid;?>" >
+
+ <input type="button" name="submi" id="btnid" value=" uu" >
+</form>
+
+
+
+<div id="select" >
+  <?php
+$m="select * from questions where gradeid='$grdx' && termid='$trmx'  ";
+$ss=mysqli_query($conn,$m);
+$f=mysqli_num_rows($ss);
+
+$numx=1;
+?>
+<table id="tablex" >
+
+<?php
+while($m=mysqli_fetch_array($ss)){
+  
+  $inqid=$m['questid'];
+
+?>
+<tr>
+<td> <?php echo $numx ;?></td>
+<td> <?php echo $inqid ;?></td>
+
+</tr>
+
+<?php
+$numx++;
+}?>
+</table>
+
+</div>
+
+<script type="text/javascript">
+  var tbl= document.getElementById("tablex");
+
+  setInterval(function(){
+ d=tbl.rows.length;
+  x=Math.floor(Math.random() * (d - 1) ) + 1;
+$("#qidval").val(tbl.rows[x].cells[1].innerHTML);
+  },10000)
+    
+
+ setInterval(function(){
+ 
+$("#btnid").click();
+  },10000)
+
+  setInterval(function(){
+ 
+$("#selectqz").load('selectq');
+  },10000)
+
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function() {
+             $("#btnid").click(function() {
+                                
+                  $.ajax({
+                        url: "getquestid.php",
+                        method: "POST",
+                        data: $('#qidform').serialize(),
+                        success: function(data) {
+                            $('#returnid').fadeIn().html(data);
+                            setTimeout(function() {
+                                $('#returnid').fadeOut("slow");
+                            }, 6000);
+                        }
+                    });
+            });
+                               });
+
+    </script>
+
+
+<!-------------------------------endinsert qid into game------->
+
+</div>
+
+<!---------------------------------------------------->
+<!------------------------------------------------------>
+<!---------------------------------------------------->
+<!------------------------------------------------------>
+<!---------------------------------------------------->
+<!------------------------------------------------------>
+
+<script >
+function hideall(){
+    $("#btnans").hide();
+      $("#btndir").hide();
+      $("#omda").hide();
+	   $("#startgbtn").hide();
+	   $("#startqbtn2").hide();
+   	   $("#userinfo").hide();
+	   $("#time").hide();
+  	   $("#aids").hide();
+  	   $("#allq").hide();
+  	   $("#a1").hide();
+  	   $("#b2").hide();
+  	   $("#c3").hide();
+  	   $("#d4").hide();};
+
+  	   hideall();
+
+
+
+
+     l=document.getElementById('l');
+	r=document.getElementById('r');
+
+$("#l").click(function(){
+	$("#dir").css({"direction":"ltr","text-align":"left"})
+});
+$("#r").click(function(){
+		$("#dir").css({"direction":"rtl","text-align":"right"})
+
+});
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+
+	
+$(document).ready(function(){
+
+//bottonstart1 show
+	   $("#startgbtn").fadeIn(3000);
+bodyw=document.getElementById('gbody');
+vid1w=document.getElementById('vid1');
+contvideow=document.getElementById('contvideo');
+
+
+//bottonstart1click
+$("#startv1").click(function(){
+
+startg();
+
+   $("#vid1").trigger('play');
+   $("#startgbtn").hide(),
+
+   setTimeout(function(){
+	   $("#omda").fadeIn(2000);
+},2000);
+
+setTimeout(function(){
+	   $("#omda").fadeOut(2000);
+},10000);
+
+setTimeout(function(){
+	   $("#gbody").show();
+   	   $("#userinfo").show(2000);
+	   $("#time").fadeIn(2000);
+  	   $("#aids").show(2000);
+
+},13000)
+
+ setTimeout(function(){
+	 	$("#startqbtn2").fadeIn(2000);
+       },15000);
+     
+});
+
+
+
+});
+
+
+
+
+//bottonquestionshowclick
+$("#startq1").click(function(){
+startgstop();
+qsbg();
+
+function startq1f(){
+
+	nmq=parseInt(document.getElementById("numqq").innerHTML);
+if(nmq > 10){
+	$("#numqq").html(1);
+	setTimeout(function(){
+	   $("#insert").load('insert.php');
+       },1000)
+
+
+}
+
+//timer start
+ timer= setInterval (function(){
+
+  tm=parseInt($("#timer").html());
+      if(tm !==0){
+ 	$("#timer").html(tm-1);
+                }else{
+
+
+     exit();
+                }
+ },1000);
+
+
+
+//endtime
+
+	 	$("#startqbtn2").hide();
+
+    $('#next').prop("disabled",true);
+    $('#sure').prop("disabled",false);
+
+         $("#btndir").show(2000);
+
+        $("#allq").fadeIn(2000);
+
+       setTimeout(function(){
+ 	        $("#a1").fadeIn(1000);
+ },3000);
+setTimeout(function(){
+ 	        $("#b2").fadeIn(1000);
+ },4000);
+setTimeout(function(){
+ 	        $("#c3").fadeIn(1000);
+ },5000);
+setTimeout(function(){
+ 	        $("#d4").fadeIn(1000);
+ },6000);
+
+
+setTimeout(function(){
+ 	        $("#btnans").fadeIn(2000);
+ },8000);
+
+setTimeout(function(){
+think();
+ },7000);
+
+}
+
+startq1f();
+ });
+
+
+</script>
+
+
+
+<script>
+        $(document).ready(function() {
+
+            $('#sure').click(function() {
+                
+                sel = $("input:radio[name=1]:checked").val();
+                co=document.getElementById("correct").innerHTML;
+                if (sel == undefined )
+                      {
+                    $('#noti').html('<center style="color:red;">  اختر اجابة اولا   </center>');
+                    setTimeout(function(){
+                    $('#noti').html('<center style="color:red;">   </center>');
+                    },3000);
+
+                    } else {
+   
+             conf=confirm(" هل هذا قرارك الاخير واجابتك النهائية ؟  ");
+
+                if(conf == true){
+
+             thinkstop();
+             waitforan();
+             $('#sure').prop("disabled",true);
+                clearInterval(timer);
+              $("#"+sel+sel).css({"background":"pink"})
+
+                  repcoo= setTimeout(function(){
+
+               repco= setInterval(function(){
+               $("#"+co+co).css({"background":"green","color":"white"})
+                 repcooo= setTimeout(function(){
+               $("#"+co+co).css({"background":"lightgreen","color":"white"})
+                            },500);
+                },1000);
+
+          if(co==sel){
+              correctan();
+                            $("#inf").attr("hidden",false);
+                            $("#inf").show(1000);
+                            $('#next').prop("disabled",false);
+                            setTimeout(function(){
+	                    $("#insertsc").load('insertsc.php');
+                        },1000)
+	
+
+          }else{
+             wrongan();
+
+                            $("#inf").attr("hidden",false);
+                            $("#inf").show(1000);
+                                exit();
+          }                  
+ 
+                 },17000);
+
+
+                     }
+          	
+
+
+                if(conf == false){$('#noti').html('<center style="color:red;">   </center>');}
+
+
+                }
+            });
+
+
+
+        });
+    </script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+	        $(document).ready(function(){
+
+     $("#next").click(function(){
+
+	clearInterval(repco);
+    clearTimeout(repcoo);
+     clearTimeout(repcooo);
+    $("#"+co+co).css({"background":"white","color":"black"});
+    $("#"+sel+sel).css({"background":"white","color":"black"});
+	$("input:radio[name=1]:checked").prop("checked", false);
+
+         clearInterval(timer);
+       $("#timer").html(120);
+
+     nextq();
+ 	   $("#inf").hide(1000);
+
+ 	   $("#allq").fadeOut(1000);
+  	   $("#a1").fadeOut(1000);
+  	   $("#b2").fadeOut(1000);
+  	   $("#c3").fadeOut(1000);
+  	   $("#d4").fadeOut(1000);
+
+ 	  $("#btnans").fadeOut(1500);
+
+
+	   $("#startqbtn2").show(2000);
+setTimeout(function(){
+	   $("#selectq").load('selectq.php');
+               $("#allan").load();
+},1500)
+
+
+     });
+
+
+	        });
+
+
+//exit
+
+            $('#exit').click(function() {
+
+
+         exit();
+
+            });
+
+
+
+</script>
+
+
+
+
+

@@ -1,0 +1,104 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<?php
+
+include 'header.php';
+
+
+if(!isset($_SESSION['id'])){
+  header('location:../login/');
+}
+
+?>
+
+</head>
+<body>
+
+
+
+
+<div class="container_fluid" style=" overflow-x:hidden;">
+ <div class="row">
+
+   <div class="d-none d-md-none d-lg-block d-xl-block col-xs-12 col-sm-12 col-md-3- col-lg-3 col-xl-3 " 
+   style="background:red;height:500px ">
+   
+
+    </div>
+
+
+<div class=" col-xs-12 col-sm-12 col-md-6- col-lg-6 col-xl-6 " 
+   style="background:skyblue;height:500px; ">
+   
+<?php include 'home.html'; ?>
+
+    </div>
+
+
+ <div class="d-none d-md-none d-lg-block d-xl-block col-xs-12 col-sm-12 col-md-3- col-lg-3 col-xl-3 " 
+   style="background:red;height:500px ">
+   
+
+    </div>   
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--------
+
+<audio id="confirm"  src="../sound/a.mp4"></audio>
+
+<button id="btncnf" class="btn btn-info">mm</button>
+
+<script type="text/javascript">
+
+	$("#btncnf").click(function(){
+
+			$("#confirm").attr("autoplay","autoplay");
+			$("#btncnf").attr("class","btn btn-danger");
+			$("#btncnf").text("ok");
+
+	});
+
+</script>
+
+
+
+
+------>
+
+
+
+</body>
+</html>
+
+
+<?php
+
+include 'footer.php';
+
+?>

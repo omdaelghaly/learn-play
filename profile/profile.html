@@ -1,0 +1,186 @@
+
+
+
+<?php
+
+
+$qq="select * from teachers where userid='$tid'  ";
+$f=mysqli_query($conn,$qq);
+
+
+
+
+$t=mysqli_fetch_array($f);
+ $tfn=$t['userfname'];
+ $xtid=$t['userid'];
+ $ts=$t['tsub'];
+ $ta=$t['about'];
+$tavatar=$t['avatar'];
+
+
+
+
+@$un=$_POST['un'];
+ @$us=$_POST['us'];
+ @$ua=$_POST['ua'];
+
+
+
+
+if(isset($_POST['sav'])){
+
+	$imgn='';
+	$imgtm='';
+  $imgn     = @$_FILES['imgup'] ['name'] ;
+  $imgt     = @$_FILES['imgup'] ['type'] ;
+  $imgtm    = @$_FILES['imgup'] ['tmp_name'] ;
+  $imgs     = @$_FILES['imgup'] ['size'] ;
+ 
+
+ if(!empty($imgn)){
+
+ $allowed =array("jpg","png","gif","jpeg");
+$explode =explode('.',$imgn);
+$filetype=strtolower(end($explode));
+
+if(! in_array($filetype, $allowed)){
+  echo " unsupported ";
+} else{  
+        
+
+if($tid==$xtid && $tavatar==$imgn){
+$u="update teachers set  userfname ='$un' , tsub='$us' , about ='$ua'  where userid= '$tid' ";
+$v=mysqli_query($conn,$u);
+}else {
+
+
+
+
+  move_uploaded_file($imgtm, '../img/'.$imgn);
+
+$u="update teachers set  userfname ='$un' , tsub='$us' , about ='$ua' , avatar='$imgn' where userid= '$tid' ";
+$v=mysqli_query($conn,$u);
+
+if($tavatar=='male.jpg' || $tavatar=='female.jpg'){
+	}else{
+@unlink('../img/'.$tavatar);
+}
+  
+} }
+                    }else{
+
+$u="update teachers set  userfname ='$un' , tsub='$us' , about ='$ua'  where userid= '$tid' ";
+$v=mysqli_query($conn,$u);
+
+
+
+
+                }
+
+header('location:index.html');
+
+
+}
+?>
+
+
+
+<center><div id="return"></div></center>
+<form method="post" action=" <?php echo $_SERVER['PHP_SELF'];?>"  id="insert_data"  enctype="multipart/form-data">
+
+<div class="container_fluid " id="pa">
+<div class="row">
+
+<!-------------------------------------------------------------------------------------->
+
+
+<div class="col-12 col-xs-6" style="margin-bottom:5px ">
+	<div class="card" style="height:700px;background:lightgray;position: relative; ">
+
+
+
+		<div style="padding:5px;height:25%;background:blue;width:100% ;  ">
+
+				<img src="../img/<?php echo $tavatar;?>" id="pimg" 
+			style="position:absolute;width:50%;height:50% ;border-radius:50%;margin-left:25%  "/>
+
+		</div>
+		
+           
+
+
+<input type="file" name="imgup" id="img"  accept="image/*" >
+
+
+<div style="height:30%"></div>
+
+
+		<div style="height:15%;background:white;border-radius:30px;overflow:hidden ;line-height:15px;margin-bottom:1px   ">
+
+		<textarea name="un" id="un" type="text" placeholder=" "   
+		style="width:100%;height:48%;text-align:center;word-wrap:break-word;    ">    </textarea>    
+
+
+
+		<textarea name="us" id="us" type="text"  placeholder="  " 
+		style="width:100%;height:48%;text-align:center;word-wrap:break-word;    "> </textarea>    
+
+		</div>
+
+		<div style="height:25%;background:white;border-radius:30px;overflow:hidden ;line-height:15px;margin-bottom:1px   ">
+
+		<textarea name="ua" id="ua" type="text"  placeholder=" "
+		style="width:100%;height:100%;text-align:center;word-wrap:break-word;    ">  </textarea>    
+
+		</div>
+
+		<br>
+              <div class="container">
+		<div class="row" style="height:18%;background:white;border-radius:30px;">
+<div  style=" "class="col-12">
+<input type="submit"  name="sav" id="sav"  class="btn btn-block  btn-success" style="width:100%" value="حفظ  ">
+
+</div>
+
+
+
+		</div>
+           </div>
+
+
+	</div>
+</div>
+
+
+
+
+<!---------------------------------------------------------------------------------------->
+
+
+</div>
+</div>
+
+</form>
+
+
+
+
+
+<script type="text/javascript">
+	n="<?php echo $tfn ; ?>";
+    s="<?php echo $ts ; ?>";
+    a="<?php echo $ta ; ?>";
+if(a==''){a=" write something about you ";}
+if(s==''){s=" write your subject  ";}
+if(n==''){n="<?php echo $tfn ; ?>";}
+
+    $("#un").html(n);
+    $("#ua").html(a);
+    $("#us").html(s);
+
+
+
+
+</script>
+
+
